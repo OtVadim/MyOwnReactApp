@@ -10,4 +10,4 @@ const MyButton = ({children, ...props}) => {
     );
 };
 
-export default MyButton;
+export default MyButton

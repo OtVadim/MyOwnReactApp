@@ -8,6 +8,7 @@ import MyButton from "./components/UI/Button/MyButton";
 import MyInput from "./components/UI/Input/MyInput";
 import "./styles/App.css";
 
+
 function App() {
   const [posts, setPosts] = useState([
       {id: 1, title: 'JavaScript', body:'Description'},
@@ -15,20 +16,18 @@ function App() {
       {id: 3, title: 'Python', body:'Description'}
   ])
 
-  
-  
+  const createPost = (newPost) => {
+    setPosts([...posts, newPost])
+  }
 
-
-  const addNewPost = (e) => {
-    e.preventDefault()
-    setPosts([...posts, {...post, id: Date.now()}])
-    setPost({title: '', body: ''})
+  const removePost = (post) => {
+    setPosts(posts.filter(p => p.id !== post.id))
   }
 
   return (
     <div className="App">
-      <PostForm/>
-      <PostList posts={posts} title="Список постов 1"/>
+      <PostForm create={createPost}/>
+      <PostList remove={removePost} posts={posts} title="Список постов 1"/>
       
     </div>
   );

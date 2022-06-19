@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import MyInput from "./UI/Input/MyInput";
+import MyButton from "./UI/Button/MyButton";
 
-const PostForm = () => {
+
+const PostForm = ({create}) => {
     
     const [post, setPost] = useState({title: '', body: ''})
+
+    const addNewPost = (e) => {
+        e.preventDefault()
+        const newPost = {
+            ...post, id: Date.now()
+        }
+        create(newPost)
+        setPost({title: '', body: ''})
+      }
     
     return (
         <div>
